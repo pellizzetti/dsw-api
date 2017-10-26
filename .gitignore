@@ -12,6 +12,7 @@
 hs_err_pid*
 
 .gradle
+.gradle/*
 build/
 *.iml
 
@@ -24,7 +25,8 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 
-/.idea
+.idea
+.idea/*
 
 # Local configuration file (sdk path, etc)
 local.properties
