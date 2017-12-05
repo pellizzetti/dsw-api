@@ -5,13 +5,10 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
+import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Created by rajeevkumarsingh on 27/06/17.
- */
 @Entity
 @Table(name = "notes")
 @EntityListeners(AuditingEntityListener.class)
@@ -23,9 +20,11 @@ public class Note {
     private Long id;
 
     @NotBlank
+    @ApiModelProperty(notes = "Título da nota", required =true)
     private String title;
 
     @NotBlank
+    @ApiModelProperty(notes = "Conteúdo da nota", readOnly =true)
     private String content;
 
     @Column(nullable = false, updatable = false)

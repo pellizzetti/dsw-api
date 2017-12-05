@@ -5,21 +5,29 @@ import br.udesc.ceavi.dsw.api.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import javax.validation.Valid;
 import java.util.List;
 
-/**
- * Created by rajeevkumarsingh on 27/06/17.
- */
 @RestController
 @RequestMapping("/api")
+@Api(value = "note", description = "Operações REST para notas", tags = "API Notas")
 public class NoteController {
 
     @Autowired
     NoteRepository noteRepository;
 
     @GetMapping("/notes")
+    //@RequestMapping(value = "/notes", method = RequestMethod.GET, produces = "application/json")
+    @ApiOperation(value = "Retorna um lista com todas as notas cadastradas", response = Note.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "Não encontrado")
+    }
+    )
     public List<Note> getAllNotes() {
         return noteRepository.findAll();
     }
